@@ -12,7 +12,11 @@ import UIKit
 class FaceView: UIView {
     
     @IBInspectable
-    var isEyeOpen: Bool = true
+    var isEyeOpen: Bool = true {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
 	
     @IBInspectable
     var scale: CGFloat = 0.9 {
@@ -22,13 +26,25 @@ class FaceView: UIView {
     }
     
     @IBInspectable
-    var mouthCurvature: Double = 1.0	// 1.0 is full smile and -1.0 is full frown
+    var mouthCurvature: Double = 1.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }	// 1.0 is full smile and -1.0 is full frown
 	
     @IBInspectable
-    var lineWidth: CGFloat = 5.0
+    var lineWidth: CGFloat = 5.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     @IBInspectable
-    var color: UIColor = UIColor.orange
+    var color: UIColor = UIColor.orange {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     private var skullRadius: CGFloat {
         return min(bounds.width, bounds.height) / 2 * scale
@@ -124,5 +140,7 @@ class FaceView: UIView {
             break
         }
     }
+    
+   
     
 }
